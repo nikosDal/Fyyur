@@ -103,19 +103,12 @@ ul.items {
 }
 ul.items > li > a {
   margin-bottom: 15px;
-  display: flex;
   color: initial;
   text-decoration: initial;
+  display: inline-flex;
 }
 ul.items > li > a > i {
   padding: 7px 10px 0;
-}
-ul.items > li:hover {
-  color: orange;
-  cursor: pointer;
-}
-ul.items > li:hover h5 {
-  color: orange;
 }
 .item {
   padding: 5px 5px 5px;
@@ -124,6 +117,10 @@ ul.items > li:hover h5 {
 .item h5 {
   margin-top: 0;
   margin-bottom: 5px;
+}
+.item:hover{
+  color: orange;
+  cursor: pointer;
 }
 img {
   max-width: 100%;
@@ -208,4 +205,12 @@ h2.monospace {
 }
 .subtitle {
   opacity: 0.5;
+}
+.del_btn:hover {
+  color: red;
+  cursor: pointer;
+}
+.edit_btn:hover {
+  color: blue;
+  cursor: pointer;
 }

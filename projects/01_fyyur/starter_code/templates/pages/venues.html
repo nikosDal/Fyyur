@@ -6,6 +6,12 @@
 	<ul class="items">
 		{% for venue in area.venues %}
 		<li>
+			<a href='#'>
+				<i class='fas fa-trash-alt del_btn' data-id='{{venue.id}}'></i>
+			</a>
+			<a href='/venues/{{venue.id}}/edit'>
+				<i class='fas fa-edit edit_btn' data-id='{{venue.id}}'></i>
+			</a>
 			<a href="/venues/{{ venue.id }}">
 				<i class="fas fa-music"></i>
 				<div class="item">
@@ -16,4 +22,22 @@
 		{% endfor %}
 	</ul>
 {% endfor %}
+
+
+<script>
+	const del_buttons = document.querySelectorAll('.del_btn');
+	for (let i=0; i < del_buttons.length; i++) {
+		const del_button = del_buttons[i];
+		del_button.onclick = function(e) {
+			e.preventDefault();
+			venue_id = e.target.dataset['id'];
+			fetch('/venues/' + venue_id, {
+				method: 'DELETE'
+			}).then(function(response) {
+				console.log('log', response);
+				window.location.href = '/';
+			});
+		}
+	}
+</script>
 {% endblock %}

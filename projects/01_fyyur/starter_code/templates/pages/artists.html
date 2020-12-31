@@ -4,6 +4,12 @@
 <ul class="items">
 	{% for artist in artists %}
 	<li>
+		<a href='#'>
+			<i class='fas fa-trash-alt del_btn' data-id='{{artist.id}}'></i>
+		</a>
+		<a href='/artists/{{artist.id}}/edit'>
+			<i class='fas fa-edit edit_btn' data-id='{{artist.id}}'></i>		
+		</a>
 		<a href="/artists/{{ artist.id }}">
 			<i class="fas fa-users"></i>
 			<div class="item">
@@ -13,4 +19,21 @@
 	</li>
 	{% endfor %}
 </ul>
+
+<script>
+	const del_buttons = document.querySelectorAll('.del_btn');
+	for (let i=0; i < del_buttons.length; i++) {
+		const del_button = del_buttons[i];
+		del_button.onclick = function(e) {
+			e.preventDefault();
+			artist_id = e.target.dataset['id'];
+			fetch('/artists/' + artist_id, {
+				method: 'DELETE',
+			}).then(function(response) {
+				console.log('log', response);
+				window.location.href = '/';
+			});
+		}
+	}
+</script>
 {% endblock %}
